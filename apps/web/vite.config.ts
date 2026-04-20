@@ -9,8 +9,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const proxyTarget = env.VITE_PROXY_TARGET || "http://localhost:8081";
+  const basePath = env.VITE_BASE_PATH || "/";
 
   return {
+    base: basePath,
     // @tailwindcss/vite resuelve @import con condición "style" y falla con el exports de @heroui/styles
     resolve: {
       alias: {
